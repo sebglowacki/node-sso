@@ -4,7 +4,7 @@ var express = require('express')
     , BearerStrategy = require('passport-http-bearer').Strategy;
 
 var Client = require('node-rest-client').Client;
-client = new Client();
+var client = new Client();
 client.registerMethod("validateToken", "http://localhost:3000/token/callback", "POST");
 
 // Use the BearerStrategy within Passport.
@@ -17,7 +17,7 @@ passport.use(new BearerStrategy({
         // asynchronous validation, for effect...
         process.nextTick(function () {
 
-            args = {
+            var args = {
                 headers: {'content-type': 'application/json'},
                 data: {'token': token}
             };
